@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text winTimeText;
     public GameObject winPanel;
     public GameObject inGamePanel;
+    public Image pickUpSlider;
 
     void Start()
     {
@@ -68,8 +70,9 @@ public class PlayerController : MonoBehaviour
     void CheckPickUps()
     {
         pickUpText.text = "Pick Ups Left: " + pickUpCount;
-        
-        if(pickUpCount == 0)
+        float inv = Mathf.InverseLerp(0f, 3f, pickUpCount);
+        pickUpSlider.fillAmount = inv;
+        if (pickUpCount == 0)
         {
             WinGame();
         }
